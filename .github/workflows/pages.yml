@@ -24,10 +24,12 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+    - run: npm run zip
+    - run: unzip archive.zip -d docs
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.5.0
       with:
         jekyll: false
-        build_dir: ./
+        build_dir: docs
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
